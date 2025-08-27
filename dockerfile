@@ -15,4 +15,4 @@ COPY ./src ./src
 COPY ./shared ./shared
 
 # Define the command to run the worker
-CMD [ "npm", "run", "start" ]
+CMD [  "npm", "run", "start:worker"  ]
