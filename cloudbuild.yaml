@@ -1,0 +1,32 @@
+steps:
+# 1. Build the Worker image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - 'europe-west1-docker.pkg.dev/${PROJECT_ID}/dselogger-repo-europe/datalogger-worker:latest'
+    - '.'
+
+# 2. Deploy the Worker Service
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+    - 'run'
+    - 'deploy'
+    - 'dataloggerworker' # The name of your worker service in Cloud Run
+    - '--image'
+    - 'europe-west1-docker.pkg.dev/${PROJECT_ID}/dselogger-repo-europe/datalogger-worker:latest'
+    - '--region'
+    - 'europe-west1'
+    - '--platform'
+    - 'managed'
+    - '--no-allow-unauthenticated'
+    - '--set-env-vars'
+    - 'REDIS_URL=${_REDIS_URL},MONGODB_URI=${_MONGODB_URI}'
+
+# Push the image to Artifact Registry
+images:
+- 'europe-west1-docker.pkg.dev/${PROJECT_ID}/dselogger-repo-europe/datalogger-worker:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

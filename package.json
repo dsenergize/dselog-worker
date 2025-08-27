@@ -1,0 +1,19 @@
+{
+  "name": "datalogger-worker",
+  "version": "1.0.0",
+  "main": "src/worker.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/worker.js",
+    "dev": "nodemon src/worker.js"
+  },
+  "dependencies": {
+    "bullmq": "^5.58.1",
+    "dayjs": "^1.11.13",
+    "dotenv": "^17.2.1",
+    "mongoose": "^8.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
