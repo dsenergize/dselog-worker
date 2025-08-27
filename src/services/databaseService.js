@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 // **MODIFIED**: Added .js extension to the plugin imports
 import utc from 'dayjs/plugin/utc.js';
 import customParseFormat from 'dayjs/plugin/customParseFormat.js';
-import { getDb } from '../../../shared/config/db.js';
+import { getDb } from '../../shared/config/db.js';
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
