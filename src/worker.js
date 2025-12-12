@@ -81,7 +81,7 @@ const robustProcessor = async (arg) => {
 };
 
 
-getDb().then(() => {
+getDb().then(async () => {
     console.log('Database connection established. Creating worker...');
     
     const worker = new Worker(
